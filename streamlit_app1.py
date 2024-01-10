@@ -32,14 +32,10 @@ sql_query = f"""
     LIMIT {page_size} OFFSET {start_index}
 """
 ONLINERETAILTABLE_data = session.sql(sql_query).collect()
+
 # Create a Pandas DataFrame for easier data manipulation
 ONLINERETAILTABLE_df = pd.DataFrame(ONLINERETAILTABLE_data)
 print(ONLINERETAILTABLE_df.shape)
-
-
-
-
-
 
 #Title and Adding a descriptive second text box with emojis 
 st.title("Customer Purchase Analytics 📊🛍️")
@@ -54,8 +50,6 @@ st.divider()
 
 #Select a country option 
 country_options = ONLINERETAILTABLE_df['COUNTRY'].value_counts().index.to_list()
-
-
 selected_options = st.selectbox("Choose country 🗺️", country_options)
 #Get the country option 
 @st.cache_data
@@ -64,11 +58,6 @@ def get_selected_options(selected_options):
     return selected_options
 selected_options=get_selected_options(selected_options)
 Country_ONLINERETAIL_df=ONLINERETAILTABLE_df[ONLINERETAILTABLE_df['COUNTRY']==selected_options]
-#Creating a dataframe by the filtering the table from the country option 
-# Country_ONLINERETAIL_data =f"select * from ONLINERETAILTABLE where COUNTRY = '{selected_options}' limit 1500";
-# Country_ONLINERETAIL_data = session.sql(Country_ONLINERETAIL_data).collect()
-
-# Country_ONLINERETAIL_df = pd.DataFrame(Country_ONLINERETAIL_data,)   
 
 #Creating a new column Total_price using quantity and unitprice columns 
 Country_ONLINERETAIL_df['Total_price'] = Country_ONLINERETAIL_df.apply(lambda row: float(row['QUANTITY']) * float(row['UNITPRICE']), axis=1)
