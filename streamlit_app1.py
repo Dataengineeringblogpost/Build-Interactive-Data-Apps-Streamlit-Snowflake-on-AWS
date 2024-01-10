@@ -9,11 +9,11 @@ from snowflake.snowpark import Session
 def create_session():
    #Creates a Snowflake session and caches it for performance optimization.
     return Session.builder.configs(
-        {"user" :"Datasnowflake",
-        "password" : "Karthiksara@2123",
-        "account" : "wyb73440.us-east-1",
-        "warehouse" : "COMPUTE_WH",
-        "database" : "DB_ONLINE_RETAIL",
+        {"user" :"<user name>",
+        "password" : "<password>",
+        "account" : "<account id>",
+        "warehouse" : "<warehouse name>",
+        "database" : "<database name>",
         "schema" : "PUBLIC"}).create()
 
 # Create and retrieve the Snowflake session
