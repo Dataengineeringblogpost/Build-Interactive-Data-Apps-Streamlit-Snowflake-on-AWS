@@ -1,0 +1,26 @@
+commands to deploy streamlit code into aws ec2
+
+ssh -i "<pem file>" <ec2 user name>@<your-ec2-instance-ip>.compute-1.amazonaws.com
+
+
+### Create Virtual Environment
+
+
+python3 -m venv myenv
+
+
+### Activate Virtual Environment
+
+
+source myenv/bin/activate
+
+
+### Copy files from local to ec2
+
+
+scp streamlit_app1.py <ec2-user>@<your-ec2-instance-ip>:/path/to/destination
+
+Run streamlit app in background
+
+
+nohup streamlit run <streamlit app.py>
